@@ -7,6 +7,9 @@ function Home() {
   return (
     <div>
       <h1>Page Home</h1>
+      <ul>
+        
+      </ul>
     </div>
   );
 }

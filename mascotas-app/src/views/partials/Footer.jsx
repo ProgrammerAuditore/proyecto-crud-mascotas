@@ -4,7 +4,7 @@ function Footer() {
   return (
     <>
       {/*  Footer  */}
-      <footer className="bg-light text-center ">
+      <footer className="bg-light text-center position-relative" >
         {/*  Grid container  */}
         <div className="container p-4">
           {/*  Section: Social media  */}
