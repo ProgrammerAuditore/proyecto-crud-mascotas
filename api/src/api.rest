@@ -1,0 +1,40 @@
+@api = http://localhost:3033/api/v1/mascota
+
+### Crear una mascota
+POST {{api}}
+Content-Type: application/json
+
+{
+    "nombre": "Deisi",
+    "edad": 1,
+    "raza": "Pitbull",
+    "enfermedades" : [
+        "Mareos",
+        "Vomitos"
+    ]
+}
+
+
+### Listar mascotas
+GET {{api}}
+
+
+### Consultar una mascota
+GET {{api}}/627a4a86d5ee8a9be63d1714
+
+
+### Actualizar una mascota
+PUT  {{api}}/627a4a86d5ee8a9be63d1712
+Content-Type: application/json
+
+{
+    "nombre": "Modificado",
+    "edad": 1,
+    "raza": "Modificado",
+    "enfermedades" : []
+}
+
+
+### Eliminar una mascota
+DELETE {{api}}/627a4a86d5ee8a9be63d1714
+
