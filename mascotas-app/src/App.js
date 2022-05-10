@@ -7,6 +7,7 @@ import Add from './views/crud/Add';
 import NavBar from './views/partials/NavBar';
 import Footer from './views/partials/Footer';
 import Update from './views/crud/Update';
+import View from './views/crud/View';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="add" element={<Add />} />
+            <Route path="view/:_id" element={<View />} />
             <Route path="update/:_id" element={<Update />} />
             <Route path="*" element={<NoFound />} />
           </Routes>

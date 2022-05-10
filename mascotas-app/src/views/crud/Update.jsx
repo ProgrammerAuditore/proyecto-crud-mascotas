@@ -41,11 +41,10 @@ function Update() {
         
         MascotaService.updateMascota(nuevoMascota, mascota._id)
         .then((resp) => {
-          let nMascota = resp.data;
+          let nMascota = resp.data.data;
           alert("Mascota actualizado exitosamente.");
           
-          window.location.reload();
-          //window.location.href = `/empleados/ver/${nMascota.id}`;
+          window.location.href = `/view/${nMascota._id}`;
         })
         .catch((resp) => {
           alert("Mascota no actualizado. Hubo un error en el servidor.");
