@@ -12,12 +12,14 @@ function App() {
     <div className="App">
       <NavBar />
         <div className='container' style={{minHeight : 77.6+'vh'}}>
+          <div className='m-3 p-3'>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="add" element={<Add />} />
             <Route path="*" element={<NoFound />} />
           </Routes>
+          </div>
         </div>
       <Footer />
     </div>
