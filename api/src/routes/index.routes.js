@@ -23,7 +23,7 @@ router.post(`${API}/`, async (req, resp, next) => {
 });
 
 // Eliminar
-router.delete(`${API}/:_id`, async (req, resp) => {
+router.delete(`${API}/:_id`, async (req, resp, next) => {
     console.log(req.body);
     try {
         const _id = req.params._id;
@@ -38,13 +38,16 @@ router.delete(`${API}/:_id`, async (req, resp) => {
     }
 });
 
-// Modificar
-router.put(`${API}/:_id`, async (req, resp) => {
+// Actualizar
+router.put(`${API}/:_id`, async (req, resp, next) => {
     console.log(req.body);
     try {
         const _id = req.params._id;
+        const {nombre, raza, edad, enfermedades} = req.body;
 
-        const data = await Mascota.findByIdAndUpdate(_id);
+        const data = await Mascota.findByIdAndUpdate(_id,{
+            nombre, raza, edad, enfermedades
+        });
         console.log(data);
 
         resp.send({status:200, message:'Mascota modificada', data: data});
@@ -55,15 +58,16 @@ router.put(`${API}/:_id`, async (req, resp) => {
 });
 
 // Consultar
-router.get(`${API}/:_id`, async (req, resp) => {
+router.get(`${API}/:_id`, async (req, resp, next) => {
     console.log(req.body);
     try {
         const _id = req.params._id;
+        console.log('Consultar', req.params, req.body);
 
         const data = await Mascota.findById(_id);
         console.log(data);
 
-        resp.send({status:200, message:'Mascota consultada', data: data});
+        resp.status(200).json(data);
     } catch (error) {
         console.log(error);
         next(error);
@@ -71,7 +75,7 @@ router.get(`${API}/:_id`, async (req, resp) => {
 });
 
 // Listar
-router.get(`${API}/`, async (req, resp) => {
+router.get(`${API}/`, async (req, resp, next) => {
     console.log(req.body);
     try {
         const data = await Mascota.find();

@@ -18,7 +18,6 @@ const enfermedades = {type: [SchemaEnfermedades], require: false, default: undef
 
 const enfermedades = [{type: 'String', require: false}];
 
-
 const SchemaMascota = mongoose.Schema(
     {nombre, edad, raza, enfermedades}, 
     {timestamps: true, versionKey: false}

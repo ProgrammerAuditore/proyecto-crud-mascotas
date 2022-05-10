@@ -20,7 +20,7 @@ GET {{api}}
 
 
 ### Consultar una mascota
-GET {{api}}/627a4a86d5ee8a9be63d1714
+GET {{api}}/627ab67ba6ba75e1e7b7b273
 
 
 ### Actualizar una mascota
