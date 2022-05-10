@@ -67,7 +67,7 @@ router.get(`${API}/:_id`, async (req, resp, next) => {
         const data = await Mascota.findById(_id);
         console.log(data);
 
-        resp.status(200).json(data);
+        resp.status(200).send({status:200, message:'Mascota obtenida', data: data});
     } catch (error) {
         console.log(error);
         next(error);

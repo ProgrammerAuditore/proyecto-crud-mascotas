@@ -16,8 +16,8 @@ function Update() {
     useEffect(() => {
       MascotaService.getMascota(_id)
         .then((resp) => {
-          let detalleEmpleado = resp.data;
-          setMascota(detalleEmpleado);
+          let detalleMascota = resp.data;
+          setMascota(detalleMascota.data);
         })
         .catch((resp) => {
           window.location.href = "/pets";
