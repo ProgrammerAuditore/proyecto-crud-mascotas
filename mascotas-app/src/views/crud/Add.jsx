@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MascotaService from "../../service/MascotaService";
 
 function Add() {
     
@@ -25,6 +26,26 @@ function Add() {
 
         if(respuesta) return;
         
+        MascotaService.createMascota(nuevoMascota)
+        .then((resp) => {
+          let nMascota = resp.data;
+          alert("Mascota registrado exitosamente.");
+          
+          formRegistrar.reset();
+          setMascota({
+            nombre: '',
+            edad: 0,
+            raza: 'otro',
+            enfermedad: []
+          });
+
+          //window.location.href = `/empleados/ver/${nMascota.id}`;
+        })
+        .catch((resp) => {
+          alert("Mascota no creado. Hubo un error en el servidor.");
+          
+          //window.location.href = "/";
+        });
 
         alert('Registrando mascota');
         
