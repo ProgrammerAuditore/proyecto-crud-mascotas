@@ -3,7 +3,13 @@ const morgan = require('morgan');
 const _connect = require('./database');
 const routerIndex = require('./routes/index.routes');
 const methodOverride = require('method-override');
+const cors = require('cors');
 const app = express();
+
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 app.set('port', 3033);
 
@@ -14,6 +20,8 @@ app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 
 app.use(express.json());
+
+app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false}));
 
