@@ -27,13 +27,21 @@ function View() {
     const fncBtnEditar = (e) => {
         window.location.href=`/update/${_id}`;
      }
-    
+
+    const fncBtnEliminar = async () => {
+        try {
+            await MascotaService.deleteMascota(mascota._id);
+            window.location.href = "/pets";
+        } catch (error) {
+            alert('No se pudo eliminar la mascota seleccionada.');
+        }
+    };
     
   return (
     <>
       <div>
         <div className="card">
-          <h5 className="card-header">Actualizar mi mascota</h5>
+          <h5 className="card-header">Datos de mi mascota</h5>
           <div className="card-body">
             <form id="form-registrar">
               {/* Campo : Nombre */}
@@ -116,7 +124,8 @@ function View() {
             </form>
           </div>
           <div className="card-footer">
-              <button role='button' className='btn btn-warning' onClick={()=> fncBtnEditar()}>Editar</button>
+              <button type="button" className='btn btn-warning m-1' onClick={()=> fncBtnEditar()}>Editar</button> 
+              <button type="button" className='btn btn-danger m-1' onClick={()=> fncBtnEliminar()}>Eliminar</button>
           </div>
         </div>
       </div>
