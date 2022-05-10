@@ -184,7 +184,7 @@ function Add() {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-success">
+              <button type="submit" className="btn btn-success m-1 text-white">
                 Registrar
               </button>
             </form>

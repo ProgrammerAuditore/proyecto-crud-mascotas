@@ -193,7 +193,7 @@ function Update() {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-warning">
+              <button type="submit" className="btn btn-warning m-1 text-white">
                 Actualizar
               </button>
             </form>

@@ -124,8 +124,8 @@ function View() {
             </form>
           </div>
           <div className="card-footer">
-              <button type="button" className='btn btn-warning m-1' onClick={()=> fncBtnEditar()}>Editar</button> 
-              <button type="button" className='btn btn-danger m-1' onClick={()=> fncBtnEliminar()}>Eliminar</button>
+              <button type="button" className='btn btn-warning m-1 text-white' onClick={()=> fncBtnEditar()}>Editar</button> 
+              <button type="button" className='btn btn-danger m-1 text-white' onClick={()=> fncBtnEliminar()}>Eliminar</button>
           </div>
         </div>
       </div>
