@@ -7,7 +7,7 @@ function Add() {
         nombre: '',
         edad: 0,
         raza: 'otro',
-        enfermedad: []
+        enfermedades: []
     });
 
     
@@ -17,8 +17,8 @@ function Add() {
         const formRegistrar = document.querySelector('#form-registrar');
         const data = Object.keys(formRegistrar).map(key => formRegistrar[key].value || 'input:error');
 
-        const enfermedades = mascota.enfermedad;
-        const nuevoMascota = { nombre : data[0], raza : data[1], edad : data[2], enfermedad: enfermedades  
+        const enfermedades = mascota.enfermedades;
+        const nuevoMascota = { nombre : data[0], raza : data[1], edad : data[2], enfermedades: enfermedades  
           ? enfermedades : undefined };
 
         const buscarCamposVacios = Object.keys(nuevoMascota).map(key => nuevoMascota[key] || 'input:error');
@@ -36,37 +36,30 @@ function Add() {
             nombre: '',
             edad: 0,
             raza: 'otro',
-            enfermedad: []
+            enfermedades: []
           });
 
-          //window.location.href = `/empleados/ver/${nMascota.id}`;
+          //window.location.href = `/pets/view/${nMascota.id}`;
+          window.location.href = "/pets";
         })
         .catch((resp) => {
           alert("Mascota no creado. Hubo un error en el servidor.");
-          
-          //window.location.href = "/";
-        });
-
-        alert('Registrando mascota');
-        
+          window.location.href = "/";
+        });        
     }
 
     const fncAgregarEnfermedad = (e) => {
         e.preventDefault();
         
-        const inputEnfermedad = document.querySelector('#enfermedad');
+        const inputEnfermedad = document.querySelector('#enfermedades');
         if( inputEnfermedad.value.length <= 2 ) return;
         
-        const m = mascota.enfermedad.push({
-            id: mascota.enfermedad.length,
-            value: inputEnfermedad.value
-        });
-
+        const m = mascota.enfermedades.push(inputEnfermedad.value);
 
         setMascota({
             ...mascota,
-            enfermedad: [
-                ...mascota.enfermedad,
+            enfermedades: [
+                ...mascota.enfermedades,
             ]
         });
 
@@ -74,16 +67,18 @@ function Add() {
     }
 
     const fncEliminarEnfermedad = (id) => {
-        const m = mascota.enfermedad.splice(id, 1);
+        const m = mascota.enfermedades.splice(id, 1);
         console.log(id, m);
 
         setMascota({
             ...mascota,
-            enfermedad: [
-                ...mascota.enfermedad,
+            enfermedades: [
+                ...mascota.enfermedades,
             ]
         });
     }
+
+  if(!mascota) window.location.href = "/";
 
   return (
     <>
@@ -121,13 +116,13 @@ function Add() {
                   name="tipo"
                   defaultValue={"Otro"}
                 >
-                  <option value={"Otro"}>Otro</option>
-                  <option value={"Chihuahua"}>Chihuahua</option>
-                  <option value={"Pitbull"}>Pitbull</option>
-                  <option value={"Xoloitzcuintle"}>Xoloitzcuintle</option>
-                  <option value={"Bulldog"}>Bulldog</option>
-                  <option value={"Pug"}>Pug</option>
-                  <option value={"Bóxer"}>Bóxer</option>
+                  <option defaultValue={"Otro"}>Otro</option>
+                  <option defaultValue={"Chihuahua"}>Chihuahua</option>
+                  <option defaultValue={"Pitbull"}>Pitbull</option>
+                  <option defaultValue={"Xoloitzcuintle"}>Xoloitzcuintle</option>
+                  <option defaultValue={"Bulldog"}>Bulldog</option>
+                  <option defaultValue={"Pug"}>Pug</option>
+                  <option defaultValue={"Bóxer"}>Bóxer</option>
                 </select>
               </div>
 
@@ -147,15 +142,15 @@ function Add() {
 
               {/* Campo : Enfermedades */}
               <div className="mb-3">
-                <label htmlFor="enfermedad" className="form-label">
+                <label htmlFor="enfermedades" className="form-label">
                   Enfermedades
                 </label>
                 <div className="input-group">
                   <input
                     type="text"
                     className="form-control"
-                    name="enfermedad"
-                    id="enfermedad"
+                    name="enfermedades"
+                    id="enfermedades"
                     aria-describedby="button-addon2"
                     placeholder="Agregue una enfermedad"
                   />
@@ -168,13 +163,13 @@ function Add() {
                     Agregar
                   </button>
                 </div>
-                <div className="form-text m-2">
+                <div className="form-text m-2 alert alert-secondary">
                   <ul style={{ listStyle: "none" }}>
-                    { Object.keys(mascota.enfermedad).map(el => {
+                    { Object.keys(mascota.enfermedades).map(el => {
                         
                         return (<li key={el} style={{ display: "inline", margin: "4px" }}>
                             <span className="badge bg-secondary position-relative">
-                            {mascota.enfermedad[el].value}
+                            {mascota.enfermedades[el]}
                         <span
                           type="button"
                           onClick={() => fncEliminarEnfermedad(el)}
