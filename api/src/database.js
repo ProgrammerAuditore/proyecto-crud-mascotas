@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 function _connect(){
+    // Definir datos para la conexión
     const HOST = "localhost";
     const PORT = 27017;
     const DB = "crud_mascotas";
