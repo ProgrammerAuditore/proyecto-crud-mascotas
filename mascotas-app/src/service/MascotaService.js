@@ -21,6 +21,10 @@ class MascotaService {
         return axios.get(`${MASCOTA_API_BASE_URL}/${mascotaId}`);
     }
 
+    getSearchMascota(mascotaNombre){
+        return axios.get(`${MASCOTA_API_BASE_URL}/s/${mascotaNombre}`);
+    }
+
     updateMascota(mascota, mascotaId){
         return axios.put(`${MASCOTA_API_BASE_URL}/${mascotaId}`, mascota);
     }

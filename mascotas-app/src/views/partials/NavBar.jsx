@@ -28,8 +28,8 @@ function NavBar() {
           </ul>
         </li>
             </ul>
-            <form className="d-flex">
-                <input className="form-control me-2" type="search" placeholder="Buscar una mascota..." aria-label="Buscar"/>
+            <form className="d-flex" method='GET' action='/pets/'>
+                <input className="form-control me-2" type="search" name="search" placeholder="Buscar una mascota..." aria-label="Buscar"/>
                 <button className="btn btn-outline-success" type="submit">Buscar</button>
             </form>
             </div>

@@ -74,6 +74,22 @@ router.get(`${API}/:_id`, async (req, resp, next) => {
     }
 });
 
+router.get(`${API}/s/:nombre`, async (req, resp, next) => {
+    console.log(req.body);
+    try {
+        const nombre = req.params.nombre;
+        console.log('Buscar', req.params, req.body);
+
+        const data = await Mascota.find({nombre: new RegExp(nombre, 'i')}).exec();
+        console.log(data);
+
+        resp.status(200).send({status:200, message:'Mascota obtenida', data: data});
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+});
+
 // Listar
 router.get(`${API}/`, async (req, resp, next) => {
     console.log(req.body);
