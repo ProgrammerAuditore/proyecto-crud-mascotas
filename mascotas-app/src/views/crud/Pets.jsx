@@ -11,7 +11,6 @@ function Pets() {
     useEffect(() => {
         // Obtener parametro search
         search = new URL(window.location.href).searchParams.get('search') || '';
-        console.log('search', search, typeof(search), search.length);
 
         async function fetchData() {
             await MascotaService.getMascotas()
