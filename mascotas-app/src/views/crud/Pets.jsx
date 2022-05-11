@@ -98,9 +98,9 @@ function Pets() {
                 </div>
                 <div className="card-footer">
                     <div className="d-flex justify-content-between">
-                        <small className="text-muted">Creado {moment(mascota.createdAt).startOf('hour').fromNow() }</small>
+                        <small className="text-muted">Creado {moment(mascota.createdAt).calendar() }</small>
                         {/* Acciones para el modal */}
-                    <div className="btn-group btn-group-sm" role="group" aria-label="...">
+                    <div className="btn-group btn-group-sm text-center align-middle" role="group" aria-label="...">
                         <a href={"#"} onClick={()=> fncBtnVer(mascota._id)} className="btn btn-dark btn-sm btn-block">
                             <i className="fas fa-eye"></i>
                         </a> 
