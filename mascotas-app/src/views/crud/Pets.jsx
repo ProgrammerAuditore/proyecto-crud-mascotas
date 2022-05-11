@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import MascotaService from '../../service/MascotaService';
 import swal from 'sweetalert';
 import EmptyPets from '../partials/EmptyPets';
-import { useParams } from 'react-router-dom';
+import moment from 'moment';
+import 'moment/locale/es';
+
+moment.locale('es');
 
 function Pets() {
     const [mascotas, setMascota] = useState([]);
@@ -95,7 +98,7 @@ function Pets() {
                 </div>
                 <div className="card-footer">
                     <div className="d-flex justify-content-between">
-                        <small className="text-muted">Creado hace {new Date().getHours() - new Date(mascota.createdAt).getHours()} hrs.</small>
+                        <small className="text-muted">Creado {moment(mascota.createdAt).startOf('hour').fromNow() }</small>
                         {/* Acciones para el modal */}
                     <div className="btn-group btn-group-sm" role="group" aria-label="...">
                         <a href={"#"} onClick={()=> fncBtnVer(mascota._id)} className="btn btn-dark btn-sm btn-block">
