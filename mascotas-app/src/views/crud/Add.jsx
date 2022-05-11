@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MascotaService from "../../service/MascotaService";
+import swal from 'sweetalert';
 
 function Add() {
     
@@ -24,27 +25,50 @@ function Add() {
         const buscarCamposVacios = Object.keys(nuevoMascota).map(key => nuevoMascota[key] || 'input:error');
         const respuesta = buscarCamposVacios.includes('input:error');
 
-        if(respuesta) return;
+        if(respuesta){
+          //***  Mensaje de error */
+          swal({
+            title: "Aviso",
+            text: "Todos los campos son requeridos.",
+            icon: "error"
+          }).then((value) => {});
+
+          return;
+        }
         
         MascotaService.createMascota(nuevoMascota)
         .then((resp) => {
           let nMascota = resp.data;
-          alert("Mascota registrado exitosamente.");
           
-          formRegistrar.reset();
-          setMascota({
-            nombre: '',
-            edad: 0,
-            raza: 'otro',
-            enfermedades: []
+          //***  Mensaje de exitosa */
+          swal({
+            title: "Hecho",
+            text: "Mascota registrada exitosamente.",
+            icon: "success"
+          })
+          .then((value) => {
+            if(value){ window.location.href = "/pets"; }
+            else {
+              formRegistrar.reset();
+              setMascota({
+                nombre: '',
+                edad: 0,
+                raza: 'otro',
+                enfermedades: []
+              });
+            }
           });
 
-          //window.location.href = `/pets/view/${nMascota.id}`;
-          window.location.href = "/pets";
         })
         .catch((resp) => {
-          alert("Mascota no creado. Hubo un error en el servidor.");
-          window.location.href = "/";
+            //***  Mensaje de error */
+            swal({
+              title: "Aviso",
+              text: "Hubo un error en la operación.",
+              icon: "error"
+            }).then((value) => {
+              window.location.href = "/";
+            });
         });        
     }
 
@@ -52,7 +76,16 @@ function Add() {
         e.preventDefault();
         
         const inputEnfermedad = document.querySelector('#enfermedades');
-        if( inputEnfermedad.value.length <= 2 ) return;
+        if( inputEnfermedad.value.length <= 3 ) {
+          //***  Mensaje de error */
+          swal({
+            title: "Aviso",
+            text: "Agregue una enfermedad correcto con más de 3 caracteres.",
+            icon: "error"
+          }).then((value) => {});
+
+          return;
+        }
         
         const m = mascota.enfermedades.push(inputEnfermedad.value);
 
@@ -77,8 +110,6 @@ function Add() {
             ]
         });
     }
-
-  if(!mascota) window.location.href = "/";
 
   return (
     <>

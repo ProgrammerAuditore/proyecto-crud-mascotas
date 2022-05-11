@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MascotaService from "../../service/MascotaService";
 import { useParams } from "react-router";
+import swal from 'sweetalert';
 
 function Update() {
   let { _id } = useParams();
@@ -26,7 +27,6 @@ function Update() {
     
     const fncActualizarMascota = (e) => {
         e.preventDefault();
-        console.log("sdsd");
         const formRegistrar = document.querySelector('#form-registrar');
         const data = Object.keys(formRegistrar).map(key => formRegistrar[key].value || 'input:error');
 
@@ -42,17 +42,29 @@ function Update() {
         MascotaService.updateMascota(nuevoMascota, mascota._id)
         .then((resp) => {
           let nMascota = resp.data.data;
-          alert("Mascota actualizado exitosamente.");
+           
+          //***  Mensaje de exitosa */
+           swal({
+            title: "Hecho",
+            text: "Mascota actualizado con exito.",
+            icon: "success"
+          })
+          .then((value) => {
+            if(value) window.location.href = "/pets";
+            else window.location.reload();
+          });
           
-          window.location.href = `/view/${nMascota._id}`;
         })
         .catch((resp) => {
-          alert("Mascota no actualizado. Hubo un error en el servidor.");
-          
-          //window.location.href = "/";
+          //***  Mensaje de error */
+          swal({
+            title: "Aviso",
+            text: "Hubo un error en la operación.",
+            icon: "error"
+          }).then((value) => {
+            window.location.href = "/";
+          });
         });
-
-        alert('Registrando mascota');
         
     }
 
@@ -60,7 +72,16 @@ function Update() {
         e.preventDefault();
         
         const inputEnfermedad = document.querySelector('#enfermedades');
-        if( inputEnfermedad.value.length <= 2 ) return;
+        if( inputEnfermedad.value.length <= 3 ) {
+          //***  Mensaje de error */
+          swal({
+            title: "Aviso",
+            text: "Agregue una enfermedad correcto con más de 3 caracteres.",
+            icon: "error"
+          }).then((value) => {});
+
+          return;
+        }
         
         const m = mascota.enfermedades.push(inputEnfermedad.value);
 
@@ -85,6 +106,8 @@ function Update() {
             ]
         });
     }
+
+    if(!mascota) window.location.href = "/";
 
   return (
     <>
