@@ -17,14 +17,14 @@ function NavBar() {
                 </li>
                 
                
-                <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Mis mascotas
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/pets">Ver mascotas</a></li> 
-            <li><hr class="dropdown-divider"/></li>
-            <li><a class="dropdown-item" href="/add">Registrar</a></li>
+          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a className="dropdown-item" href="/pets">Ver mascotas</a></li> 
+            <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="/add">Registrar</a></li>
           </ul>
         </li>
             </ul>
