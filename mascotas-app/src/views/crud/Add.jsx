@@ -14,17 +14,26 @@ function Add() {
     
     const fncRegistrarMascota = (e) => {
         e.preventDefault();
-        console.log("sdsd");
+        
+        // Obtener los campos del formulario y validar los valores (o value)
+        // de cada campo del formulario
         const formRegistrar = document.querySelector('#form-registrar');
         const data = Object.keys(formRegistrar).map(key => formRegistrar[key].value || 'input:error');
 
+        // Obtener las enfermedades y crear un nuevo objeto mascota
         const enfermedades = mascota.enfermedades;
-        const nuevoMascota = { nombre : data[0], raza : data[1], edad : data[2], enfermedades: enfermedades  
-          ? enfermedades : undefined };
+        const nuevoMascota = { 
+          nombre : data[0], 
+          raza : data[1], 
+          edad : data[2], 
+          enfermedades: enfermedades ? enfermedades : undefined 
+        };
 
+        // Validar los valores del nuevo objeto mascota
         const buscarCamposVacios = Object.keys(nuevoMascota).map(key => nuevoMascota[key] || 'input:error');
         const respuesta = buscarCamposVacios.includes('input:error');
 
+        // verificar si hay un error en nuevo objeto mascota
         if(respuesta){
           //***  Mensaje de error */
           swal({
@@ -36,6 +45,7 @@ function Add() {
           return;
         }
         
+        // Registrar una nueva mascota con los datos actual
         MascotaService.createMascota(nuevoMascota)
         .then((resp) => {
           let nMascota = resp.data;
@@ -75,6 +85,7 @@ function Add() {
     const fncAgregarEnfermedad = (e) => {
         e.preventDefault();
         
+        // Obtener el campo de enfermedades
         const inputEnfermedad = document.querySelector('#enfermedades');
         if( inputEnfermedad.value.length <= 3 ) {
           //***  Mensaje de error */
@@ -87,8 +98,11 @@ function Add() {
           return;
         }
         
-        const m = mascota.enfermedades.push(inputEnfermedad.value);
+        // Agregar un nuevo enfermedad
+        mascota.enfermedades.push(inputEnfermedad.value);
 
+        // Actualizar la variable de mascota
+        // agregando el nuevo enfermedad
         setMascota({
             ...mascota,
             enfermedades: [
@@ -100,9 +114,11 @@ function Add() {
     }
 
     const fncEliminarEnfermedad = (id) => {
+        // Eliminar una enfermedad
         const m = mascota.enfermedades.splice(id, 1);
-        console.log(id, m);
 
+        // Actualizar la variable de mascota
+        // borrando la enfermedad
         setMascota({
             ...mascota,
             enfermedades: [

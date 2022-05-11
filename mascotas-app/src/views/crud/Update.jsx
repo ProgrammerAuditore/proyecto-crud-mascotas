@@ -15,6 +15,8 @@ function Update() {
     });
 
     useEffect(() => {
+
+      // Obtener una mascota por medio del _id
       MascotaService.getMascota(_id)
         .then((resp) => {
           let detalleMascota = resp.data;
@@ -23,22 +25,43 @@ function Update() {
         .catch((resp) => {
           window.location.href = "/pets";
         });
+
     }, [_id]);
     
     const fncActualizarMascota = (e) => {
         e.preventDefault();
+
+        // Obtener los campos del formulario y validar los valores (o value)
+        // de cada campo del formulario
         const formRegistrar = document.querySelector('#form-registrar');
         const data = Object.keys(formRegistrar).map(key => formRegistrar[key].value || 'input:error');
 
+        // Obtener las enfermedades y crear un nuevo objeto mascota
         const enfermedades = mascota.enfermedades;
-        const nuevoMascota = { nombre : data[0], raza : data[1], edad : data[2], enfermedades: enfermedades  
-          ? enfermedades : undefined };
+        const nuevoMascota = { 
+          nombre : data[0], 
+          raza : data[1], 
+          edad : data[2], 
+          enfermedades: enfermedades  ? enfermedades : undefined 
+        };
 
+        // Validar los valores del nuevo objeto mascota
         const buscarCamposVacios = Object.keys(nuevoMascota).map(key => nuevoMascota[key] || 'input:error');
         const respuesta = buscarCamposVacios.includes('input:error');
 
-        if(respuesta) return;
+        // verificar si hay un error en nuevo objeto mascota
+        if(respuesta){
+          //***  Mensaje de error */
+          swal({
+            title: "Aviso",
+            text: "Todos los campos son requeridos.",
+            icon: "error"
+          }).then((value) => {});
+
+          return;
+        }
         
+        // Actualizar los datos de la mascota actual
         MascotaService.updateMascota(nuevoMascota, mascota._id)
         .then((resp) => {
           let nMascota = resp.data.data;
@@ -71,6 +94,7 @@ function Update() {
     const fncAgregarEnfermedad = (e) => {
         e.preventDefault();
         
+        // Obtener el campo de enfermedades
         const inputEnfermedad = document.querySelector('#enfermedades');
         if( inputEnfermedad.value.length <= 3 ) {
           //***  Mensaje de error */
@@ -83,8 +107,11 @@ function Update() {
           return;
         }
         
-        const m = mascota.enfermedades.push(inputEnfermedad.value);
+        // Agregar un nuevo enfermedad
+        mascota.enfermedades.push(inputEnfermedad.value);
 
+        // Actualizar la variable de mascota
+        // agregando el nuevo enfermedad
         setMascota({
             ...mascota,
             enfermedades: [
@@ -96,9 +123,11 @@ function Update() {
     }
 
     const fncEliminarEnfermedad = (id) => {
-        const m = mascota.enfermedades.splice(id, 1);
-        console.log(id, m);
+        // Eliminar una enfermedad
+        mascota.enfermedades.splice(id, 1);
 
+        // Actualizar la variable de mascota
+        // borrando la enfermedad
         setMascota({
             ...mascota,
             enfermedades: [

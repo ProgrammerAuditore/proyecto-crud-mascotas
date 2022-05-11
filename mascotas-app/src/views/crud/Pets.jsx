@@ -12,6 +12,7 @@ function Pets() {
         // Obtener parametro search
         search = new URL(window.location.href).searchParams.get('search') || '';
 
+        // Obtener todas las mascota almacenadas en MongoBD 
         async function fetchData() {
             await MascotaService.getMascotas()
             .then((resp) => {
@@ -23,6 +24,8 @@ function Pets() {
             });
         }
 
+        // Obtener todas las mascota almacenadas en MongoBD 
+        // por medio del campo ´nombre´
         async function fetchSearchData() {
             await MascotaService.getSearchMascota(search)
             .then((resp) => {
@@ -35,6 +38,7 @@ function Pets() {
             });
         }
         
+        // Verificar si el parametro search existe
         if( search.length == 0 ) fetchData();
         else fetchSearchData();
     }, []);

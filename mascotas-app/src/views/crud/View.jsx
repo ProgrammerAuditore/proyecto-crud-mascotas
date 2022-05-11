@@ -14,6 +14,8 @@ function View() {
     });
 
     useEffect(() => {
+      // Obtener una mascota almacenadas en MongoBD 
+      // por medio del campo ´_id´
       MascotaService.getMascota(_id)
         .then((resp) => {
           let detalleMascota = resp.data;
