@@ -16,7 +16,7 @@ function _connect(){
     });
 
     mongoose.connection.on('error', err => {
-        logError(err);
+        console.log('MongoDB error en la conexión');
     });
 
     mongoose.connect(URI);

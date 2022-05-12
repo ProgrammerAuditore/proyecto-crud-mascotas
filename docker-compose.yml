@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  # Proyecto de Node JS + Expres + Mongoose
+  service_api:
+    container_name: node-api-mascotas
+    restart: always
+    build: 
+      context: ./api
+      dockerfile: api.Dockerfile
+    volumes:
+      - ./api:/home/max98/workspace/api
+    ports:
+      - "3033:3033"
+    depends_on:
+      - service_mongodb
+    links:
+      - service_mongodb
+    command: npm run dev
+
+  # Proyecto de React + Axios
+  service_mascotas_app:
+    container_name: react-mascotas-app
+    restart: always
+    build: 
+        context: ./mascotas-app
+        dockerfile: mascotas-app.Dockerfile
+    volumes:
+      - ./mascotas-app:/home/max98/workspace/mascotas-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - service_api
+    links:
+      - service_api
+    command: npm start
+
+  # Base de datos mongoDB
+  service_mongodb:
+    image: mongo:4.0
+    container_name: db-mongodb
+    ports:
+      - "27017:27017"
