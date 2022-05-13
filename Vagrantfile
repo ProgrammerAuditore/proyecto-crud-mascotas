@@ -16,12 +16,14 @@ Vagrant.configure("2") do |config|
     # Montar el dicrectorio actual a la ruta absoluta
     config.vm.synced_folder "./", "/home/vagrant/workspace"
 
-    # Exponer el puerto interior de la caja
-    config.vm.network "forwarded_port", guest: 3000 , host: 3000,auto_correct: true
+    # Exponer el puerto interior de la caja ** Para Proyecto React **
+    config.vm.network "forwarded_port", guest: 3080 , host: 3080, auto_correct: true
+
+    # Exponer el puerto interior de la caja ** Para Proyecto NodeJS o API Mascota **
     config.vm.network "forwarded_port", guest: 3033 , host: 3033, auto_correct: true
-    config.vm.network "forwarded_port", guest: 27017 , host: 27017, auto_correct: true
-    #config.vm.network "private_network", ip: "172.18.0.4"
-    #config.vm.network "private_network", ip: "192.168.1.69"
+
+    # Exponer el puerto interior de la caja ** Para MongoDB  **
+    config.vm.network "forwarded_port", guest: 2780 , host: 2780, auto_correct: true
     
     # Instalar docker y descagar imagen de docker (node:14-alpine)
     # *OJO* : Corre solo una vez usando `vagrant up`
