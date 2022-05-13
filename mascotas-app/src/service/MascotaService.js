@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const MASCOTA_API_BASE_URL = "http://localhost:3033/api/v1/mascota"; 
+axios.defaults.baseURL = MASCOTA_API_BASE_URL;
 
 class MascotaService {
 

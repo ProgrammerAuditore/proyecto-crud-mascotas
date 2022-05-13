@@ -1,10 +1,19 @@
 version: '3'
 
 services:
+  # Base de datos mongoDB
+  service_db:
+    image: mongo:4.0
+    container_name: db-mongodb
+    ports:
+      - "27080:27080"
+    #command: mongod --dbpath /data/db --repair
+    command: mongod --port 27080 --dbpath /data/db
+
+
   # Proyecto de Node JS + Expres + Mongoose
   service_api:
     container_name: node-api-mascotas
-    restart: always
     build: 
       context: ./api
       dockerfile: api.Dockerfile
@@ -12,14 +21,19 @@ services:
       - ./api:/home/max98/workspace/api
     ports:
       - "3033:3033"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3033"]
+      interval: 30s 
+      timeout: 10s
+      retries: 5
     depends_on:
-      - service_mongodb
+      - service_db
     links:
       - service_mongodb
     command: npm run dev
 
   # Proyecto de React + Axios
-  service_mascotas_app:
+  service_app:
     container_name: react-mascotas-app
     restart: always
     build: 
@@ -28,16 +42,15 @@ services:
     volumes:
       - ./mascotas-app:/home/max98/workspace/mascotas-app
     ports:
-      - "3000:3000"
+      - "3080:3080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3080"]
+      interval: 30s 
+      timeout: 10s
+      retries: 5
     depends_on:
       - service_api
     links:
       - service_api
     command: npm start
 
-  # Base de datos mongoDB
-  service_mongodb:
-    image: mongo:4.0
-    container_name: db-mongodb
-    ports:
-      - "27017:27017"
