@@ -29,7 +29,7 @@ services:
     depends_on:
       - service_db
     links:
-      - service_mongodb
+      - service_db
     command: npm run dev
 
   # Proyecto de React + Axios
