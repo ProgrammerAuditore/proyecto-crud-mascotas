@@ -1,1 +1,0 @@
-# Path para la persistencia de datos

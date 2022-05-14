@@ -15,6 +15,8 @@ Vagrant.configure("2") do |config|
     
     # Montar el dicrectorio actual a la ruta absoluta
     config.vm.synced_folder "./", "/home/vagrant/workspace"
+    config.vm.synced_folder "./data/db", "/home/vagrant/data/db", 
+    owner: "vagrant", group: "root", create: true, disabled: true
 
     # Exponer el puerto interior de la caja ** Para Proyecto React **
     config.vm.network "forwarded_port", guest: 3080 , host: 3080, auto_correct: true
