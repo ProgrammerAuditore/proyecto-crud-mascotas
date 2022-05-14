@@ -1,0 +1,4 @@
+.vagrant/
+.git/
+mascotas-app/node_modules
+api/node_modules

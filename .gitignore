@@ -1,0 +1,6 @@
+.vagrant/
+*.vagrant*
+mascotas-app/node_modules
+api/node_modules
+data/
+*data*
