@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const _connect = require('./database');
@@ -7,12 +8,12 @@ const cors = require('cors');
 const app = express();
 
 var corsOptions = {
-    origin: 'http://localhost:3080',
+    origin: process.env.API_CORS_ORIGIN,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
 // Establecer puerto
-app.set('port', 3033);
+app.set('port', process.env.API_PORT);
 
 // Establecer conexión a la base de datos
 _connect();
