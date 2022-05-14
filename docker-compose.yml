@@ -5,11 +5,12 @@ services:
   service_db:
     image: mongo:4.0
     container_name: db-mongodb
+    volumes:
+      - /home/vagrant/data:/data/db
     ports:
       - "27080:27080"
     #command: mongod --dbpath /data/db --repair
     command: mongod --port 27080 --dbpath /data/db
-
 
   # Proyecto de Node JS + Expres + Mongoose
   service_api:
