@@ -6,7 +6,7 @@ services:
     image: mongo:4.0
     container_name: db-mongodb
     volumes:
-      - /home/vagrant/data/db:/data/db
+      - /home/vagrant/data:/data/db
     ports:
       - "27080:27080"
     #command: mongod --dbpath /data/db --repair
