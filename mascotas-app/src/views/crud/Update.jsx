@@ -64,7 +64,6 @@ function Update() {
         // Actualizar los datos de la mascota actual
         MascotaService.updateMascota(nuevoMascota, mascota._id)
         .then((resp) => {
-          let nMascota = resp.data.data;
            
           //***  Mensaje de exitosa */
            swal({
@@ -136,13 +135,23 @@ function Update() {
         });
     }
 
-    if(!mascota) window.location.href = "/";
+    const fncBtnVolver = () => {
+      window.location.href = "/pets";
+    }
+
+  if(!mascota) window.location.href = "/";
 
   return (
     <>
       <div>
         <div className="card">
-          <h5 className="card-header">Actualizar mi mascota</h5>
+          <div className="card-header d-flex justify-content-between">
+            <h5>Actualizar mi mascota</h5>
+            <button onClick={() => fncBtnVolver()}
+            className="btn btn-primary btn-sm text-white">
+              Volver
+            </button>
+          </div>
           <div className="card-body">
             <form id="form-registrar" onSubmit={fncActualizarMascota}>
               {/* Campo : Nombre */}
@@ -156,23 +165,23 @@ function Update() {
                   id="nombre"
                   name="nombre"
                   placeholder="Introduzca el nombre"
-                  aria-describedby="emailHelp"
+                  aria-describedby="nombreHelp"
                   defaultValue={mascota.nombre}
                 />
-                <div id="emailHelp" className="form-text">
+                <div id="nombreHelp" className="form-text">
                   También puede escribir el sobrenombre de su perro
                 </div>
               </div>
 
               {/* Campo : Tipo */}
               <div className="mb-3">
-                <label htmlFor="tipo" className="form-label">
+                <label htmlFor="raza" className="form-label">
                   Tipo
                 </label>
                 <select
                   className="form-select"
-                  id="tipo"
-                  name="tipo"
+                  id="raza"
+                  name="raza"
                   defaultValue={mascota.raza}
                 >
                   <option defaultValue={"Otro"}>Otro</option>
@@ -245,7 +254,8 @@ function Update() {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-warning m-1 text-white">
+              <button type="submit" 
+              className="btn btn-warning m-1 text-white">
                 Actualizar
               </button>
             </form>

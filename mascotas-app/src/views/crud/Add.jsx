@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MascotaService from "../../service/MascotaService";
 import swal from 'sweetalert';
 
@@ -79,6 +79,7 @@ function Add() {
             }).then((value) => {
               window.location.href = "/";
             });
+            
         });        
     }
 
@@ -145,22 +146,22 @@ function Add() {
                   id="nombre"
                   name="nombre"
                   placeholder="Introduzca el nombre"
-                  aria-describedby="emailHelp"
+                  aria-describedby="nombrelHelp"
                 />
-                <div id="emailHelp" className="form-text">
+                <div id="nombrelHelp" className="form-text">
                   También puede escribir el sobrenombre de su perro
                 </div>
               </div>
 
               {/* Campo : Tipo */}
               <div className="mb-3">
-                <label htmlFor="tipo" className="form-label">
+                <label htmlFor="raza" className="form-label">
                   Tipo
                 </label>
                 <select
                   className="form-select"
-                  id="tipo"
-                  name="tipo"
+                  id="raza"
+                  name="raza"
                   defaultValue={"Otro"}
                 >
                   <option defaultValue={"Otro"}>Otro</option>
@@ -231,7 +232,8 @@ function Add() {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-success m-1 text-white">
+              <button type="submit" 
+              className="btn btn-success m-1 text-white">
                 Registrar
               </button>
             </form>
