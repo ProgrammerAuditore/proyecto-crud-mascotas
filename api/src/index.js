@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const _connect = require('./database');
-const routerIndex = require('./routes/index.routes');
+const mascotaRouters = require('./routes/mascota.routes');
 const methodOverride = require('method-override');
 const cors = require('cors');
 const app = express();
@@ -28,6 +28,6 @@ app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false}));
 
-app.use(routerIndex);
+app.use(mascotaRouters);
 
 app.listen(app.get('port'), () => console.log('server port ', app.get('port')));

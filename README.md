@@ -28,6 +28,17 @@ Finalmente las variables de entorno son:
 *  **API_MONGO_URI** *(Opcional)* <br/> Solo en caso de requerir usuario y contraseña, por ejemplo: `mongodb://<user>:<password>@<host>:<port>/<database>?<options>`. Este variable de entorno anula *API_MONGO_HOST*, *API_MONGO_PORT* y *API_MONGO_DATABASE*. 
 
 ## Correr aplicación de forma independiente (Usando npm)
+#### Configuración previa
+Antes de ejecutar los proyectos Frontend (App Mascotas) y Backend (API Mascota) es necesario configurar el archivo `.env` en la ruta **./api*, la configuración necesario es la siguiente:
+```text
+[..]
+# Mongo Database
+API_MONGO_HOST="localhost"
+API_MONGO_PORT=27017
+API_MONGO_DATABASE="app_mascotas"
+[..]
+```
+
 #### Ejecutar Frontend
 Es necesario ejecutar el proyecto frontend usando el sig. comando dentro del path **./mascotas-app/**
 ```shell
@@ -42,6 +53,18 @@ Es necesario ejecutar el proyecto backend usando el sig. comando dentro del path
 
 ## Correr aplicación de forma automatizada (Usando docker-compose)
 Es necesario ejecutar el siguiente comando desde donde se encuetra el archivo **docker-compose.yml** 
+
+#### Configuración previa
+Antes de ejecutar los proyectos Frontend (App Mascotas) y Backend (API Mascota) es necesario configurar el archivo `.env` en la ruta **./api*, la configuración necesario es la siguiente:
+```text
+[..]
+# Mongo Database
+API_MONGO_HOST="db-mongodb"
+API_MONGO_PORT=27080
+API_MONGO_DATABASE="app_mascotas"
+[..]
+```
+
 ##### Esto construye y corre la aplicación en segundo plano
 ```shell
    docker-compose build && docker-compose up -d
@@ -54,6 +77,17 @@ Es necesario ejecutar el siguiente comando desde donde se encuetra el archivo **
 
 ## Correr aplicación de forma automatizada (Usando vagrant)
 Es necesario ejecutar el siguiente comando desde donde se encuetra el archivo **docker-compose.yml** 
+
+#### Configuración previa
+Antes de ejecutar los proyectos Frontend (App Mascotas) y Backend (API Mascota) es necesario configurar el archivo `.env` en la ruta **./api*, la configuración necesario es la siguiente:
+```text
+[..]
+# Mongo Database
+API_MONGO_HOST="db-mongodb"
+API_MONGO_PORT=27080
+API_MONGO_DATABASE="app_mascotas"
+[..]
+```
 
 ##### Solo si, lo ejecuta por primera vez
 ```shell
