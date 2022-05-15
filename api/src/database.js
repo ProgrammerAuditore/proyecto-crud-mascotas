@@ -2,11 +2,10 @@ const mongoose = require('mongoose');
 
 function _connect(){
     // Definir datos para la conexión
-    
-        const HOST = process.env.API_MONGO_HOST || "localhost";
-        const PORT = process.env.API_MONGO_PORT || 27017;
-        const DB = process.env.API_MONGO_DATABASE || "crud_mascotas";
-        const URI = (process.env.API_MONGO_URI) ? process.env.API_MONGO_URI : `mongodb://${HOST}:${PORT}/${DB}`;
+    const HOST = process.env.API_MONGO_HOST || "localhost";
+    const PORT = process.env.API_MONGO_PORT || 27017;
+    const DB = process.env.API_MONGO_DATABASE || "crud_mascotas";
+    const URI = (process.env.API_MONGO_URI) ? process.env.API_MONGO_URI : `mongodb://${HOST}:${PORT}/${DB}`;
     
     mongoose.connection.on('connected', connected => {
         console.log('MongoDB conectado');
