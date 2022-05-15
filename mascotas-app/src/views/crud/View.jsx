@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import MascotaService from '../../service/MascotaService';
+import swal from 'sweetalert';
 
 function View() {
     let { _id } = useParams();
@@ -31,14 +32,33 @@ function View() {
      }
 
     const fncBtnEliminar = async () => {
-        try {
-            await MascotaService.deleteMascota(mascota._id);
-            window.location.href = "/pets";
-        } catch (error) {
-            alert('No se pudo eliminar la mascota seleccionada.');
-        }
+        swal({
+          title: "Confirmación",
+          text: "¿Seguro que deseas eliminar está mascota?",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                MascotaService.deleteMascota(_id);
+                swal("Mascota eliminada exitosamente.", {
+                    icon: "success",
+                }).then((value) => window.location.href = "/pets");
+            }
+        })
+        .catch((resp) => {
+            //***  Mensaje de error */
+            swal({
+              title: "Aviso",
+              text: "Hubo un error en la operación.",
+              icon: "error"
+            }).then((value) => window.location.href = "/");
+        });
     };
     
+  if(!mascota) window.location.href = "/";
+
   return (
     <>
       <div>
@@ -105,17 +125,15 @@ function View() {
                 </label>
                 <div className="form-text m-2 alert alert-secondary">
                   <ul style={{ listStyle: "none" }}>
-                    { Object.keys(mascota.enfermedades).map(el => {
+                    { Object.keys(mascota.enfermedades).map( (el) => {
                         
-                        console.log("sSSSS",el);
                         return (<li key={el} style={{ display: "inline", margin: "4px" }}>
                             <span className="badge bg-secondary position-relative">
                             {mascota.enfermedades[el]}
                         <span
-                          type="button"
-                          className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
                         >
-                          x
+                          { parseInt(el) + 1 }
                         </span>
                       </span>
                         </li>);

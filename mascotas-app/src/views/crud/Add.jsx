@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MascotaService from "../../service/MascotaService";
 import swal from 'sweetalert';
 
@@ -79,6 +79,7 @@ function Add() {
             }).then((value) => {
               window.location.href = "/";
             });
+            
         });        
     }
 

@@ -64,7 +64,6 @@ function Update() {
         // Actualizar los datos de la mascota actual
         MascotaService.updateMascota(nuevoMascota, mascota._id)
         .then((resp) => {
-          let nMascota = resp.data.data;
            
           //***  Mensaje de exitosa */
            swal({
@@ -136,7 +135,7 @@ function Update() {
         });
     }
 
-    if(!mascota) window.location.href = "/";
+  if(!mascota) window.location.href = "/";
 
   return (
     <>

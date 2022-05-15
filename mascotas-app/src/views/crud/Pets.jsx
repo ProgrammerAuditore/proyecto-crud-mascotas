@@ -78,7 +78,7 @@ function Pets() {
 
   return (
     <>
-    <div className="row row-cols-1 row-cols-md-3 g-4">
+    <div className="row row-cols-1 row-cols-lg-3 g-4">
     { Object.keys(mascotas).map( (index) => {
         let mascota = mascotas[index];
         return (<>
@@ -86,14 +86,44 @@ function Pets() {
                 <div className="card h-100">
                 {/* <img src="..." className="card-img-top" alt="..."/> */}
                 <div className="card-body">
-                    <h5 className="card-title">{mascota.nombre}</h5>
-                    <small className="card-text text-muted">{mascota.raza} con {mascota.edad} años de edad. <br/> Además cuenta con las siguientes enfermedades: </small>
+                    <div className='pb-2 mb-3 border-opacity-25 border-bottom border-success'>
+                    <h5 className="card-title text-center">{mascota.nombre}</h5>
+                    <small className="card-text text-muted">{mascota.raza} con {mascota.edad} años de edad. <br/> Cuenta con las siguientes enfermedades: </small>
+                    </div>
                     <ul className="list-group">
-                    { mascota.enfermedades.map( (el) => {
-                        return (<li className="list-group-item list-group-item-primary">
-                            {el}
-                        </li>);
-                    }) }
+                    {/* Mostrar un link para agregar una enfermedad  */}
+                    {  mascota.enfermedades.length == 0 &&
+                        <a href={"#"} onClick={()=> fncBtnEditar(mascota._id)} 
+                        class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between align-items-center">
+                            Agregar una enfermedad
+                            <span class="badge bg-primary rounded-pill"><i class="fas fa-plus"></i></span>
+                        </a>
+                    }
+
+                    {/* Listar una lista de enfermedades  */}
+                    {   mascota.enfermedades.map( (enfermedad, index) => {
+                    
+                            let tEnfermedad = mascota.enfermedades.length;
+                            let tEnfermedadesVisible = 3;
+
+                            // Imprimir una enfermedad
+                            if( (index+1) < (tEnfermedadesVisible+1) ){
+                                return (<li className="list-group-item list-group-item-primary">
+                                    {enfermedad}
+                                </li>);
+                            }  
+                            // Impimir un enlace para mostrar más
+                            else
+                            if( (index+1) == (tEnfermedadesVisible+1) ){
+                                return (<a href={"#"} onClick={()=> fncBtnVer(mascota._id)} 
+                                class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between align-items-center">
+                                    Ver más enfermedades...
+                                    <span class="badge bg-primary rounded-pill">+{tEnfermedad-3}</span>
+                                </a>);
+                            }
+
+                        }) // Fin del map
+                    }
                     </ul>
                 </div>
                 <div className="card-footer">

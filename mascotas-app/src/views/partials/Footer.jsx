@@ -1,30 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function Footer() {
   return (
     <>
       {/*  Footer  */}
-      <footer className="bg-light text-center position-relative" >
+      <footer className="bg-light text-center position-relative">
         {/*  Grid container  */}
         <div className="container p-4">
           {/*  Section: Social media  */}
           <section className="mb-4">
-            
             {/*  Linkedin  */}
             <a
               className="btn btn-primary btn-floating m-1"
-              style={{backgroundColor: "0082ca"}}
+              style={{ backgroundColor: "0082ca" }}
               href={"https://www.linkedin.com/in/victor-jesus-maximo-abundio/"}
               target={"_blank"}
               role="button"
-              
             >
               <i className="fab fa-linkedin-in"></i>
             </a>
             {/*  Github  */}
             <a
               className="btn btn-primary btn-floating m-1"
-              style={{backgroundColor: "333333"}}
+              style={{ backgroundColor: "333333" }}
               href={"https://github.com/ProgrammerAuditore"}
               target={"_blank"}
               role="button"
@@ -50,10 +48,14 @@ function Footer() {
         {/*  Copyright  */}
         <div
           className="text-center p-3"
-          style={{backgroundColor : "rgba(0, 0, 0, 0.2)"}}
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
           © 2020 Copyright:
-          <a className="text-dark" target={"_blank"} href={"https://github.com/ProgrammerAuditore?tab=repositories"}>
+          <a
+            className="text-dark"
+            target={"_blank"}
+            href={"https://github.com/ProgrammerAuditore?tab=repositories"}
+          >
             ProgrammerAuditore
           </a>
         </div>
