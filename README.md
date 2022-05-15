@@ -14,6 +14,19 @@ Para hacer funcionar la aplicación se requiere tener instalado, como requisito 
 * MongoDB
 * Browser (Google Chrome, Firefox, etc.)
 
+# Configuración Backend | API Mascota
+Es necesario crear un archivo `.env` del proyecto de backend dentro del path **./api**, opcionalmente puede hacer una copia del archivo `.env.test` con el nombre de **.env** que incluyen variables de entorno predeterminado o por default para funcionar con **docker-compose** y **vagrant**. <br> 
+Finalmente las variables de entorno son: 
+### Variables de entorno para API | mascota
+*  **API_PORT** *(Requerido)* Puerto para API mascota por default es `3033`
+*  **API_CORS_ORIGIN** *(Requerido)* Es la URL del proyecto frontend de App Mascotas por default es `http://localhost:3033`
+
+### Variables de entorno para Mongo | base de datos
+*  **API_MONGO_HOST** *(Requerido)* El host **db-mongodb** es el nombre del servicio configurado en docker-compose (solo si usa docker-compose o vagrant). 
+*  **API_MONGO_PORT** *(Requerido)* El puerto **27080** es el puerto configurado en docker-compose para **mongo v4.0** (solo si usa docker-compose o vagrant).
+*  **API_MONGO_DATABASE** *(Requerido)* La base de datos **crud_mascotas** es por defecto.
+*  **API_MONGO_URI** *(Opcional)* <br/> Solo en caso de requerir usuario y contraseña, por ejemplo: `mongodb://<user>:<password>@<host>:<port>/<database>?<options>`. Este variable de entorno anula *API_MONGO_HOST*, *API_MONGO_PORT* y *API_MONGO_DATABASE*. 
+
 ## Correr aplicación de forma independiente (Usando npm)
 #### Ejecutar Frontend
 Es necesario ejecutar el proyecto frontend usando el sig. comando dentro del path **./mascotas-app/**
