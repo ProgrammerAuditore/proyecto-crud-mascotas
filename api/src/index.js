@@ -8,12 +8,12 @@ const cors = require('cors');
 const app = express();
 
 var corsOptions = {
-    origin: process.env.API_CORS_ORIGIN,
+    origin: process.env.API_CORS_ORIGIN || "http://localhost:3000",
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
 // Establecer puerto
-app.set('port', process.env.API_PORT);
+app.set('port', process.env.API_PORT || 3000);
 
 // Establecer conexión a la base de datos
 _connect();
