@@ -4,7 +4,6 @@ const API = '/api/v1/mascota';
 
 // Crear
 router.post(`${API}/`, async (req, resp, next) => {
-    console.log(req.body);
     try {
         const {nombre, raza, edad, enfermedades} = req.body;
 
@@ -13,7 +12,6 @@ router.post(`${API}/`, async (req, resp, next) => {
         });
 
         const data = await mascota.save();
-        console.log(data);
         
         resp.status(200).json({status:200, message:'Mascota registrada', data: data});
     } catch (error) {
@@ -24,12 +22,10 @@ router.post(`${API}/`, async (req, resp, next) => {
 
 // Eliminar
 router.delete(`${API}/:_id`, async (req, resp, next) => {
-    console.log(req.body);
     try {
         const _id = req.params._id;
 
         const data = await Mascota.findByIdAndDelete(_id);
-        console.log(data);
 
         resp.send({status:200, message:'Mascota eliminada', data: data});
     } catch (error) {
@@ -40,7 +36,6 @@ router.delete(`${API}/:_id`, async (req, resp, next) => {
 
 // Actualizar
 router.put(`${API}/:_id`, async (req, resp, next) => {
-    console.log(req.body);
     try {
         const _id = req.params._id;
         const {nombre, raza, edad, enfermedades} = req.body;
@@ -48,7 +43,6 @@ router.put(`${API}/:_id`, async (req, resp, next) => {
         const data = await Mascota.findByIdAndUpdate(_id,{
             nombre, raza, edad, enfermedades
         });
-        console.log(data);
 
         resp.send({status:200, message:'Mascota modificada', data: data});
     } catch (error) {
@@ -59,13 +53,9 @@ router.put(`${API}/:_id`, async (req, resp, next) => {
 
 // Consultar
 router.get(`${API}/:_id`, async (req, resp, next) => {
-    console.log(req.body);
     try {
         const _id = req.params._id;
-        console.log('Consultar', req.params, req.body);
-
         const data = await Mascota.findById(_id);
-        console.log(data);
 
         resp.status(200).send({status:200, message:'Mascota obtenida', data: data});
     } catch (error) {
@@ -74,14 +64,10 @@ router.get(`${API}/:_id`, async (req, resp, next) => {
     }
 });
 
-router.get(`${API}/s/:nombre`, async (req, resp, next) => {
-    console.log(req.body);
+router.get(`${API}/search/:nombre`, async (req, resp, next) => {
     try {
         const nombre = req.params.nombre;
-        console.log('Buscar', req.params, req.body);
-
         const data = await Mascota.find({nombre: new RegExp(nombre, 'i')}).exec();
-        console.log(data);
 
         resp.status(200).send({status:200, message:'Mascota obtenida', data: data});
     } catch (error) {
@@ -92,10 +78,8 @@ router.get(`${API}/s/:nombre`, async (req, resp, next) => {
 
 // Listar
 router.get(`${API}/`, async (req, resp, next) => {
-    console.log(req.body);
     try {
         const data = await Mascota.find();
-        console.log(data);
 
         resp.send({status:200, message:'Listar mascota', data: data});
     } catch (error) {
