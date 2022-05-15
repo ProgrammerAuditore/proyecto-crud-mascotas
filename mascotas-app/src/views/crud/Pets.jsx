@@ -50,7 +50,7 @@ function Pets() {
         window.location.href = `/view/${_id}`;
     };
 
-    const fncBtnEditar = (_id) => {
+    const fncBtnModificar = (_id) => {
         window.location.href = `/update/${_id}`;
     };
 
@@ -93,10 +93,10 @@ function Pets() {
                     <ul className="list-group">
                     {/* Mostrar un link para agregar una enfermedad  */}
                     {  mascota.enfermedades.length == 0 &&
-                        <a href={"#"} onClick={()=> fncBtnEditar(mascota._id)} 
+                        <a href={"#"} onClick={()=> fncBtnModificar(mascota._id)} 
                         class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between align-items-center">
                             Agregar una enfermedad
-                            <span class="badge bg-primary rounded-pill"><i class="fas fa-plus"></i></span>
+                            <span class="badge bg-dark rounded-pill"><i class="fas fa-plus"></i></span>
                         </a>
                     }
 
@@ -118,7 +118,7 @@ function Pets() {
                                 return (<a href={"#"} onClick={()=> fncBtnVer(mascota._id)} 
                                 class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between align-items-center">
                                     Ver más enfermedades...
-                                    <span class="badge bg-primary rounded-pill">+{tEnfermedad-3}</span>
+                                    <span class="badge bg-dark rounded-pill">+{tEnfermedad-3}</span>
                                 </a>);
                             }
 
@@ -134,7 +134,7 @@ function Pets() {
                         <a href={"#"} onClick={()=> fncBtnVer(mascota._id)} className="btn btn-dark btn-sm btn-block">
                             <i className="fas fa-eye"></i>
                         </a> 
-                        <a href={"#"} onClick={()=> fncBtnEditar(mascota._id)} className="btn btn-warning">
+                        <a href={"#"} onClick={()=> fncBtnModificar(mascota._id)} className="btn btn-warning">
                             <i className="fas fa-edit"></i>
                         </a> 
                         <a href={"#"} onClick={()=> fncBtnEliminar(mascota._id)} className="btn btn-danger">

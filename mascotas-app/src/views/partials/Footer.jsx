@@ -15,6 +15,7 @@ function Footer() {
               style={{ backgroundColor: "0082ca" }}
               href={"https://www.linkedin.com/in/victor-jesus-maximo-abundio/"}
               target={"_blank"}
+              rel="noreferrer"
               role="button"
             >
               <i className="fab fa-linkedin-in"></i>
@@ -25,6 +26,7 @@ function Footer() {
               style={{ backgroundColor: "333333" }}
               href={"https://github.com/ProgrammerAuditore"}
               target={"_blank"}
+              rel="noreferrer"
               role="button"
             >
               <i className="fab fa-github"></i>
@@ -54,6 +56,7 @@ function Footer() {
           <a
             className="text-dark"
             target={"_blank"}
+            rel="noreferrer"
             href={"https://github.com/ProgrammerAuditore?tab=repositories"}
           >
             ProgrammerAuditore

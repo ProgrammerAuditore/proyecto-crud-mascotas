@@ -27,7 +27,7 @@ function View() {
         });
     }, [_id]);
 
-    const fncBtnEditar = (e) => {
+    const fncBtnModificar = (e) => {
         window.location.href=`/update/${_id}`;
      }
 
@@ -56,6 +56,10 @@ function View() {
             }).then((value) => window.location.href = "/");
         });
     };
+
+    const fncBtnVolver =  () => {
+      window.location.href = "/pets";
+    }
     
   if(!mascota) window.location.href = "/";
 
@@ -63,7 +67,12 @@ function View() {
     <>
       <div>
         <div className="card">
-          <h5 className="card-header">Datos de mi mascota</h5>
+          <div className="card-header d-flex justify-content-between">
+            <h5>Datos de mi mascota</h5>
+            <button className='btn btn-primary btn-sm text-white' onClick={()=> fncBtnVolver()}>
+              Volver
+            </button>
+          </div>
           <div className="card-body">
             <form id="form-registrar">
               {/* Campo : Nombre */}
@@ -77,25 +86,25 @@ function View() {
                   id="nombre"
                   name="nombre"
                   placeholder="Introduzca el nombre"
-                  aria-describedby="emailHelp"
+                  aria-describedby="nombrelHelp"
                   defaultValue={mascota.nombre}
                   readOnly={true}
                 />
-                <div id="emailHelp" className="form-text">
+                <div id="nombrelHelp" className="form-text">
                   También puede escribir el sobrenombre de su perro
                 </div>
               </div>
 
               {/* Campo : Tipo */}
               <div className="mb-3">
-                <label htmlFor="tipo" className="form-label">
+                <label htmlFor="raza" className="form-label">
                   Tipo
                 </label>
                 <input
-                  type="tipo"
+                  type="text"
                   className="form-control"
-                  id="tipo"
-                  name="tipo"
+                  id="raza"
+                  name="raza"
                   defaultValue={mascota.raza}
                   readOnly={true}
                   contentEditable={false}
@@ -144,8 +153,14 @@ function View() {
             </form>
           </div>
           <div className="card-footer">
-              <button type="button" className='btn btn-warning m-1 text-white' onClick={()=> fncBtnEditar()}>Editar</button> 
-              <button type="button" className='btn btn-danger m-1 text-white' onClick={()=> fncBtnEliminar()}>Eliminar</button>
+              <button type="button" onClick={()=> fncBtnModificar()}
+              className='btn btn-warning m-1 text-white'>
+                Modificar
+              </button> 
+              <button type="button" onClick={()=> fncBtnEliminar()}
+              className='btn btn-danger m-1 text-white'>
+                Eliminar
+              </button>
           </div>
         </div>
       </div>
