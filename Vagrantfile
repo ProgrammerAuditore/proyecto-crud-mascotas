@@ -30,11 +30,11 @@ Vagrant.configure("2") do |config|
     # Exponer el puerto interior de la caja ** Para MongoDB  **
     config.vm.network "forwarded_port", guest: 2780 , host: 2780, auto_correct: true
     
-    # Instalar docker y descagar imagen de docker (node:14-alpine)
+    # Instalar docker y descagar imagen de docker (node:16.20-slim)
     # *OJO* : Corre solo una vez usando `vagrant up`
     config.vm.provision "install-docker",
         type: "docker",
-        images: ["node:14-alpine", "mongo", "mongo:4.0"]
+        images: ["node:16.20-slim", "mongo", "mongo:4.0"]
     
     #config.vm.provider "vmware_fusion" do |v|
     #    v.vmx["vhv.enable"] = "TRUE"
@@ -51,7 +51,21 @@ Vagrant.configure("2") do |config|
         sudo chmod +x /usr/local/bin/docker-compose
         sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
         docker-compose --version
+        echo 'alias doc=docker-compose' >> ~/.bashrc
+        echo 'alias doc-again="docker-compose stop && docker-compose rm --force && docker-compose build --no-cache && docker-compose up"' >> ~/.bashrc
+        source ~/.bashrc
         SCRIPT
+    
+    # Instalar Node Version Manager
+    # *OJO* : Corre solo una vez usando `vagrant up`
+    config.vm.provision "install-nvm",
+    type: "shell",
+    inline: <<-SHELL
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
+    nvm install node
+    SHELL
     
     # Ejecuar el proyecto actual con Docker y docker-compose
     # *OJO* : Siempre corre usando `vagrant up`
