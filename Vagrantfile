@@ -56,17 +56,6 @@ Vagrant.configure("2") do |config|
         source ~/.bashrc
         SCRIPT
     
-    # Instalar Node Version Manager
-    # *OJO* : Corre solo una vez usando `vagrant up`
-    config.vm.provision "install-nvm",
-    type: "shell",
-    inline: <<-SHELL
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
-    nvm install node
-    SHELL
-    
     # Ejecuar el proyecto actual con Docker y docker-compose
     # *OJO* : Siempre corre usando `vagrant up`
     config.vm.provision "run-workspace",

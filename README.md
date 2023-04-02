@@ -98,3 +98,17 @@ API_MONGO_DATABASE="app_mascotas"
 ```shell
    vagrant reload 
 ```
+##### Ejecutar los contenedor invidualmente y manualmente
+
+```shell
+   doc run -d -p 3080:3080 -v /home/max98/workspace/mascotas-app/node_modules -t service_app npm start --no-deps
+```
+
+```shell
+   doc run -d -p 2780:2780 -v /home/vagrant/data:/data/db -t service_db mongod --port 27080 --dbpath /data/db
+```
+
+```shell
+   doc run -p 3033:3033 -v /home/max98/workspace/api/node_modules -t service_api npm run dev --no-deps
+```
+
