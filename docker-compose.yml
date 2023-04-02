@@ -19,7 +19,8 @@ services:
       context: ./api
       dockerfile: api.Dockerfile
     volumes:
-      - ./api:/home/max98/workspace/api
+      - /home/max98/workspace/api
+      - /home/max98/workspace/api/node_modules
     ports:
       - "3033:3033"
     healthcheck:
@@ -41,7 +42,8 @@ services:
         context: ./mascotas-app
         dockerfile: mascotas-app.Dockerfile
     volumes:
-      - ./mascotas-app:/home/max98/workspace/mascotas-app
+      - /home/max98/workspace/mascotas-app
+      - /home/max98/workspace/mascotas-app/node_modules
     ports:
       - "3080:3080"
     healthcheck:
