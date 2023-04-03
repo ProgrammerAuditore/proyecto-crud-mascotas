@@ -29,6 +29,9 @@ Vagrant.configure("2") do |config|
 
     # Exponer el puerto interior de la caja ** Para MongoDB  **
     config.vm.network "forwarded_port", guest: 2780 , host: 2780, auto_correct: true
+
+    # Actualizar repositorio la caja de Ubuntu 18.04LTS
+    config.vm.provision "shell", inline: "sudo apt-get update -qq -y"
     
     # Instalar docker y descagar imagen de docker (node:16.20-slim)
     # *OJO* : Corre solo una vez usando `vagrant up`
@@ -55,6 +58,11 @@ Vagrant.configure("2") do |config|
         echo 'alias doc-again="docker-compose stop && docker-compose rm --force && docker-compose build --no-cache && docker-compose up"' >> ~/.bashrc
         source ~/.bashrc
         SCRIPT
+    
+    # Ejecuar el proyecto actual con Docker y docker-compose
+    config.vm.provision "run-setup",
+    type: "shell",
+    path: "./setup.sh"
     
     # Ejecuar el proyecto actual con Docker y docker-compose
     # *OJO* : Siempre corre usando `vagrant up`

@@ -4,6 +4,9 @@ usando ReactJS + Axios del lado de frontend y usando NodeJS + Express + Mongoose
 del lado del backend. También se utilizo la base de datos de MongoDB para almacenar <br>
 los datos.
 
+# Screenshot
+![Preview 3](/screenshot/preview_03.jpg)
+
 # Requisitos funcionales
 Para hacer funcionar la aplicación se requiere tener instalado, como requisito lo siguiente:
 * NodeJS +14.x.x (o superior)
