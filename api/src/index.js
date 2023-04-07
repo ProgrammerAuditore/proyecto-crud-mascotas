@@ -13,7 +13,7 @@ var corsOptions = {
 }
 
 // Establecer puerto
-app.set('port', process.env.API_PORT || 3000);
+app.set('port', process.env.PORT || process.env.API_PORT || 3000);
 
 // Establecer conexión a la base de datos
 _connect();
