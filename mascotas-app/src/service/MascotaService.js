@@ -1,4 +1,6 @@
 import axios from "axios";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const MASCOTA_API_BASE_URL = (process.env.REACT_APP_MASCOTA_API) ? process.env.REACT_APP_MASCOTA_API : "http://localhost:3033/api/v1/mascota";
 axios.defaults.baseURL = MASCOTA_API_BASE_URL;
