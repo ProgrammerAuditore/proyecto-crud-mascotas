@@ -1,5 +1,7 @@
 # Este es un script para Vagranfile
 # vagrant provision
+sudo rm -rf /home/vagrant/data
+sudo mkdir -p /home/vagrant/data
 echo "[...] Provision iniciando [...]"
 cd /home/vagrant/workspace
 ls -lsa
