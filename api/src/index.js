@@ -30,4 +30,12 @@ app.use(express.urlencoded({ extended: false}));
 
 app.use(mascotaRouters);
 
-app.listen(app.get('port'), () => console.log('server port ', app.get('port')));
+// * Aplicación
+const server = app.listen(app.get('port'), () => {
+    const { address, port } = server.address();
+    const ip = address === '::' ? 'localhost' : address;
+    const protocol = 'http';
+    const url = `${protocol}://${ip}:${port}`;
+
+    console.log(`Servidor corriendo en ${url}`);
+});

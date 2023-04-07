@@ -9,13 +9,15 @@ los datos.
 
 # Requisitos funcionales
 Para hacer funcionar la aplicación se requiere tener instalado, como requisito lo siguiente:
-* NodeJS +14.x.x (o superior)
-* npm
-* docker
-* docker-compose
-* vagrant
-* MongoDB
-* Browser (Google Chrome, Firefox, etc.)
+* Requisitos minimos
+  * NodeJS +14.x.x (o superior)
+  * npm
+  * Browser (Google Chrome, Firefox, etc.)
+* Requisitos adicionales
+  * docker
+  * docker-compose
+  * vagrant
+  * MongoDB
 
 # Configuración Backend | API Mascota
 Es necesario crear un archivo `.env` del proyecto de backend dentro del path **./api**, opcionalmente puede hacer una copia del archivo `.env.test` con el nombre de **.env** que incluyen variables de entorno predeterminado o por default para funcionar con **docker-compose** y **vagrant**. <br> 
