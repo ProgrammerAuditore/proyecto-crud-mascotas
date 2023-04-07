@@ -40,13 +40,11 @@ API_MONGO_URI=<URI>
 *  **API_PORT** *(Requerido)* Puerto para API mascota por default es `3033`
 *  **API_CORS_ORIGIN** *(Requerido)* Es la URL del proyecto frontend de App Mascotas por default es `http://localhost:3033`
 
-### Variables de entorno para base de datos | MongoDB Atlas
-*  **APP_DB_USER** *(Requerido)*  
-*  **APP_DB_PASSWORD** *(Requerido)* 
-*  **APP_DB_DATABASE** *(Requerido)*
-
 ### Variables de entorno para base de datos | Local u Otro
-*  **APP_DB_URI** *(Opcional)* <br/> Solo en caso de requerir usuario y contraseña, por ejemplo: `mongodb://<user>:<password>@<host>:<port>/<database>?<options>`. Este variable de entorno anula los anteriores. <br>
+*  **API_MONGO_HOST** *(Requerido)*  
+*  **API_MONGO_PORT** *(Requerido)* 
+*  **API_MONGO_DATABASE** *(Requerido)*
+*  **API_MONGO_URI** *(Opcional)* <br/> Solo en caso de requerir usuario y contraseña, por ejemplo: `mongodb://<user>:<password>@<host>:<port>/<database>?<options>`. Este variable de entorno anula los anteriores. <br>
 El URI por defecto es `mongodb://user_vagrant:pass@service_db/db_vagrant?authSource=admin`
 
 # Configuración Previa | Frontend | Mascota App
