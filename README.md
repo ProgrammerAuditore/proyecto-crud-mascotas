@@ -36,9 +36,18 @@ API_MONGO_DATABASE="<database>"
 API_MONGO_URI=<URI>
 ```
 
-### Variables de entorno para API | mascota
+### Variables de entorno | Mascota Api
 *  **API_PORT** *(Requerido)* Puerto para API mascota por default es `3033`
 *  **API_CORS_ORIGIN** *(Requerido)* Es la URL del proyecto frontend de App Mascotas por default es `http://localhost:3033`
+
+### Variables de entorno para base de datos | MongoDB Atlas
+*  **APP_DB_USER** *(Requerido)*  
+*  **APP_DB_PASSWORD** *(Requerido)* 
+*  **APP_DB_DATABASE** *(Requerido)*
+
+### Variables de entorno para base de datos | Local u Otro
+*  **APP_DB_URI** *(Opcional)* <br/> Solo en caso de requerir usuario y contraseña, por ejemplo: `mongodb://<user>:<password>@<host>:<port>/<database>?<options>`. Este variable de entorno anula los anteriores. <br>
+El URI por defecto es `mongodb://user_vagrant:pass@service_db/db_vagrant?authSource=admin`
 
 # Configuración Previa | Frontend | Mascota App
 Es necesario crear un archivo `.env` del proyecto de backend dentro del path **./mascotas-app**, opcionalmente puede hacer una copia del archivo `.env.example` con el nombre de **.env** que incluyen variables de entorno predeterminado o por default para funcionar con **docker-compose** y **vagrant**. <br> 
