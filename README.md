@@ -19,30 +19,43 @@ Para hacer funcionar la aplicación se requiere tener instalado, como requisito 
   * vagrant
   * MongoDB
 
-# Configuración Backend | API Mascota
-Es necesario crear un archivo `.env` del proyecto de backend dentro del path **./api**, opcionalmente puede hacer una copia del archivo `.env.test` con el nombre de **.env** que incluyen variables de entorno predeterminado o por default para funcionar con **docker-compose** y **vagrant**. <br> 
-Finalmente las variables de entorno son: 
+# Configuración Previa | Backend | API Mascota
+Es necesario crear un archivo `.env` del proyecto de backend dentro del path **./api**, opcionalmente puede hacer una copia del archivo `.env.example` con el nombre de **.env** que incluyen variables de entorno predeterminado o por default para funcionar con **docker-compose** y **vagrant**. <br> 
+
+```text
+# API Mascotas
+API_PORT=3033 # Puerto para API mascotas
+API_CORS_ORIGIN="http://localhost:3080" # URL de App mascotas
+
+# Mongo Database para MongoDB Atlas
+API_MONGO_HOST="<host>"
+API_MONGO_PORT=<port>
+API_MONGO_DATABASE="<database>"
+
+# Mongo Database para MongoDB Local u Otro
+API_MONGO_URI=<URI>
+```
+
 ### Variables de entorno para API | mascota
 *  **API_PORT** *(Requerido)* Puerto para API mascota por default es `3033`
 *  **API_CORS_ORIGIN** *(Requerido)* Es la URL del proyecto frontend de App Mascotas por default es `http://localhost:3033`
 
-### Variables de entorno para Mongo | base de datos
-*  **API_MONGO_HOST** *(Requerido)* El host **db-mongodb** es el nombre del servicio configurado en docker-compose (solo si usa docker-compose o vagrant). 
-*  **API_MONGO_PORT** *(Requerido)* El puerto **27080** es el puerto configurado en docker-compose para **mongo v4.0** (solo si usa docker-compose o vagrant).
-*  **API_MONGO_DATABASE** *(Requerido)* La base de datos **crud_mascotas** es por defecto.
-*  **API_MONGO_URI** *(Opcional)* <br/> Solo en caso de requerir usuario y contraseña, por ejemplo: `mongodb://<user>:<password>@<host>:<port>/<database>?<options>`. Este variable de entorno anula *API_MONGO_HOST*, *API_MONGO_PORT* y *API_MONGO_DATABASE*. 
+# Configuración Previa | Frontend | Mascota App
+Es necesario crear un archivo `.env` del proyecto de backend dentro del path **./mascotas-app**, opcionalmente puede hacer una copia del archivo `.env.example` con el nombre de **.env** que incluyen variables de entorno predeterminado o por default para funcionar con **docker-compose** y **vagrant**. <br> 
+
+```text
+# Base URL de Moscota API
+REACT_APP_MASCOTA_API="http://localhost:3033/api/v1/mascota"
+```
+
+### Variables de entorno | Mascota App
+*  **REACT_APP_MASCOTA_API** *(Requerido)* Es la URL del proyecto backend de Mascotas API por default es `http://localhost:3033/api/v1/mascota`
 
 ## Correr aplicación de forma independiente (Usando npm)
+Es necesario ejecutar el siguiente comando desde donde se encuetra el archivo **package.json** de cada respectivo proyecto. 
+
 #### Configuración previa
-Antes de ejecutar los proyectos Frontend (App Mascotas) y Backend (API Mascota) es necesario configurar el archivo `.env` en la ruta **./api*, la configuración necesario es la siguiente:
-```text
-[..]
-# Mongo Database
-API_MONGO_HOST="localhost"
-API_MONGO_PORT=27017
-API_MONGO_DATABASE="app_mascotas"
-[..]
-```
+Antes de ejecutar los proyectos Frontend (App Mascotas) y Backend (API Mascota) es necesario configurar el archivo `.env`  de cada respectivo proyecto. 
 
 #### Ejecutar Frontend
 Es necesario ejecutar el proyecto frontend usando el sig. comando dentro del path **./mascotas-app/**
@@ -60,15 +73,7 @@ Es necesario ejecutar el proyecto backend usando el sig. comando dentro del path
 Es necesario ejecutar el siguiente comando desde donde se encuetra el archivo **docker-compose.yml** 
 
 #### Configuración previa
-Antes de ejecutar los proyectos Frontend (App Mascotas) y Backend (API Mascota) es necesario configurar el archivo `.env` en la ruta **./api*, la configuración necesario es la siguiente:
-```text
-[..]
-# Mongo Database
-API_MONGO_HOST="db-mongodb"
-API_MONGO_PORT=27080
-API_MONGO_DATABASE="app_mascotas"
-[..]
-```
+Antes de ejecutar los proyectos Frontend (App Mascotas) y Backend (API Mascota) es necesario configurar el archivo `.env`  de cada respectivo proyecto. 
 
 ##### Esto construye y corre la aplicación en segundo plano
 ```shell
@@ -82,21 +87,13 @@ API_MONGO_DATABASE="app_mascotas"
 
 ## Correr aplicación de forma automatizada (Usando vagrant)
 #### **Nota**
-Es necesario ejecutar el siguiente comando desde la directorio/carpeta raíz donde se encuetra el archivo **docker-compose.yml** 
+Es necesario ejecutar el siguiente comando desde la directorio/carpeta raíz donde se encuetra el archivo **Vagranfile** 
 
 Cabe mencionar que el archivo **docker-compose.yml** es creado y configurado especificamente para ejecutarse dentro de vagrant.
 Así tambien el comando "vagrant up" o "vagrant reload", levanta los servicios definidas en el archivo **docker-compose.yml** (Por defecto).
 
 #### Configuración previa
-Antes de ejecutar los proyectos Frontend (App Mascotas) y Backend (API Mascota) es necesario configurar el archivo `.env` en la ruta **./api*, la configuración necesario es la siguiente:
-```text
-[..]
-# Mongo Database
-API_MONGO_HOST="db-mongodb"
-API_MONGO_PORT=27080
-API_MONGO_DATABASE="app_mascotas"
-[..]
-```
+Antes de ejecutar los proyectos Frontend (App Mascotas) y Backend (API Mascota) es necesario configurar el archivo `.env`  de cada respectivo proyecto.
 
 ##### Crear maquina virtual
 Este comando crea una maquina virtual usando **'vagrant'** para correr *docker* y *docker-compose* dentro de ella. <br>
