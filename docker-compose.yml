@@ -15,7 +15,7 @@ services:
       - /home/vagrant/data:/data/db
       # create-user.js ; Se ejecutará solo si la carpeta /data/db
       # no contenga contenido de MongoDB (es decir, si no se ha inicializado MongoDB)
-      - /home/vagrant/workspace/mongoose/create-user.js:/docker-entrypoint-initdb.d/create-user.js:ro
+      - /home/vagrant/workspace/mongodb/create-user.js:/docker-entrypoint-initdb.d/create-user.js:ro
     ports:
       - "27080:27017"
     #command: mongod --dbpath /data/db --repair
