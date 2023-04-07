@@ -1,21 +1,33 @@
-version: '3'
+version: "3"
 
 services:
   # Base de datos mongoDB
   service_db:
     image: mongo:4.0
     container_name: db-mongodb
+    networks:
+      - app-network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_DATABASE: admin
     volumes:
       - /home/vagrant/data:/data/db
+      # create-user.js ; Se ejecutará solo si la carpeta /data/db
+      # no contenga contenido de MongoDB (es decir, si no se ha inicializado MongoDB)
+      - /home/vagrant/workspace/mongoose/create-user.js:/docker-entrypoint-initdb.d/create-user.js:ro
     ports:
-      - "27080:27080"
+      - "27080:27017"
     #command: mongod --dbpath /data/db --repair
-    command: mongod --port 27080 --dbpath /data/db
+    #command: mongod --port 27080 --dbpath /data/db
+    command: mongod --bind_ip_all --auth
 
   # Proyecto de Node JS + Expres + Mongoose
   service_api:
     container_name: node-api-mascotas
-    build: 
+    networks:
+      - app-network
+    build:
       context: ./api
       dockerfile: api.Dockerfile
     volumes:
@@ -25,7 +37,7 @@ services:
       - "3033:3033"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3033"]
-      interval: 30s 
+      interval: 30s
       timeout: 10s
       retries: 5
     depends_on:
@@ -38,9 +50,9 @@ services:
   service_app:
     container_name: react-mascotas-app
     restart: always
-    build: 
-        context: ./mascotas-app
-        dockerfile: mascotas-app.Dockerfile
+    build:
+      context: ./mascotas-app
+      dockerfile: mascotas-app.Dockerfile
     volumes:
       - /home/max98/workspace/mascotas-app
       - /home/max98/workspace/mascotas-app/node_modules
@@ -48,7 +60,7 @@ services:
       - "3080:3080"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3080"]
-      interval: 30s 
+      interval: 30s
       timeout: 10s
       retries: 5
     depends_on:
@@ -57,3 +69,6 @@ services:
       - service_api
     command: npm start
 
+networks:
+  app-network:
+    driver: bridge
