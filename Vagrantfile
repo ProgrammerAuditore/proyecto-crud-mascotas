@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 2780 , host: 2780, auto_correct: true
 
     # Actualizar repositorio la caja de Ubuntu 18.04LTS
-    config.vm.provision "shell", inline: "sudo apt-get update -qq -y"
+    config.vm.provision :shell, inline: "sudo apt-get install -y ntp && sudo service ntp restart && sudo apt-get update -qq -y"
     
     # Instalar docker y descagar imagen de docker (node:16.20-slim)
     # *OJO* : Corre solo una vez usando `vagrant up`
