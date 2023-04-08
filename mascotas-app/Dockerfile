@@ -10,14 +10,20 @@ WORKDIR /home/max98/workspace/mascotas-app
 
 COPY package*.json /home/max98/workspace/mascotas-app
 
+COPY .env .
+
 RUN npm install -g cross-env
 
 RUN npm install 
 
+COPY . .
+
 # Declarar variables de entorno obtenidas en `.env`
 ENV REACT_APP_MASCOTA_API=${REACT_APP_MASCOTA_API}
 
-COPY . .
+# Mostrar variables
+RUN echo "PORT=$PORT"
+RUN echo "REACT_APP_MASCOTA_API=$REACT_APP_MASCOTA_API"
 
 EXPOSE $PORT
 
