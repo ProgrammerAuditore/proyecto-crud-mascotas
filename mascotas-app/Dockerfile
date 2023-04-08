@@ -1,5 +1,9 @@
 FROM node:14.21.3-slim
 
+ENV PORT=$PORT
+
+ENV REACT_APP_MASCOTA_API=$REACT_APP_MASCOTA_API
+
 RUN mkdir -p /home/max98/workspace/mascotas-app
 
 WORKDIR /home/max98/workspace/mascotas-app
@@ -12,6 +16,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3080 3080
+EXPOSE $PORT
 
 CMD ["npm","start"]
