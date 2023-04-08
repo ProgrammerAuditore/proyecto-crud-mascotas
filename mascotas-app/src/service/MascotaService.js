@@ -6,12 +6,12 @@ axios.defaults.baseURL = MASCOTA_API_BASE_URL;
 class MascotaService {
 
     getMascotas(){
-        consolog.log("MASCOTA_API_BASE_URL : " + MASCOTA_API_BASE_URL);
+        console.log("MASCOTA_API_BASE_URL : " + MASCOTA_API_BASE_URL);
         return axios.get(MASCOTA_API_BASE_URL);
     }
 
     createMascota(mascota){
-        consolog.log("MASCOTA_API_BASE_URL : " + MASCOTA_API_BASE_URL);
+        console.log("MASCOTA_API_BASE_URL : " + MASCOTA_API_BASE_URL);
         return axios.post(MASCOTA_API_BASE_URL, mascota, {
             headers: {
                 // Overwrite Axios's automatically set Content-Type
