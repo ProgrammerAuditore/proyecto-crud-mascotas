@@ -14,6 +14,9 @@ RUN npm install -g cross-env
 
 RUN npm install 
 
+# Declarar variables de entorno obtenidas en `.env`
+ENV REACT_APP_MASCOTA_API=${REACT_APP_MASCOTA_API}
+
 COPY . .
 
 EXPOSE $PORT
