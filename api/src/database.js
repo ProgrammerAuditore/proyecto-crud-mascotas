@@ -24,7 +24,7 @@ function _connect(){
         let conn = db.connection;
         console.log(`mongodb://${conn.host}:${conn.port}/${conn.db.databaseName}`)
     })
-    .catch( err => conn.log(err));
+    .catch( err => console.log(err));
 };
 
 module.exports = _connect;
