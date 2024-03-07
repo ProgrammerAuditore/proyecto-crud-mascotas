@@ -1,0 +1,7 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm install && CI=false react-scripts build"
+
+[deploy]
+startCommand = "CI=false serve build -s -n -L -p $PORT"
+restartPolicyType = "never"
